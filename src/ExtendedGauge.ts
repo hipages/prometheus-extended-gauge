@@ -78,7 +78,7 @@ export class ExtendedGauge {
 
   inc(first: any, second?: any, third?: any): void {
     const labels = (typeof first === 'object') ? first : {};
-    const delta = ((typeof first === 'object') ? second : first) || 1;
+    const delta: number = ((typeof first === 'object') ? second : first) || 1;
     const timestamp = (typeof first === 'object') ? third : second;
     const hash = hashObject(labels);
     const currentValue = this.getLastValue(hash);
