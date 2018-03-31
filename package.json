@@ -1,0 +1,76 @@
+{
+  "name": "prometheus-gauge-extras",
+  "version": "0.1.0",
+  "description": "An enhanced gauge that can expose better stats on gauges",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist docs && mkdir docs",
+    "test": "NODE_ENV=test nyc mocha",
+    "itest": "NODE_ENV=test nyc --reporter=lcov --report-dir=icoverage mocha itest",
+    "coverage": "NODE_ENV=test nyc --reporter=lcov mocha && codecov -f coverage/lcov.info",
+    "lint": "tslint -p .",
+    "prepublishOnly": "yarn run clean && yarn run build && yarn test && yarn lint",
+    "precommit": "npm run lint",
+    "prepush": "node .checkpush.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "YOURGITREPO"
+  },
+  "engine": {
+    "node": ">8.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "author": "Hipages",
+  "license": "Apache-2.0",
+  "directories": {
+    "lib": "dist",
+    "test": "test"
+  },
+  "peerDependencies": {
+    "prom-client": ">=10.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^8.4.0",
+    "prom-client": "10.0.2",
+    "@types/source-map-support": "^0.4.0",
+    "co-mocha": "^1.2.2",
+    "codecov": "^3.0.0",
+    "doubleagent": "^1.1.1",
+    "husky": "^0.14.3",
+    "mocha": "^5.0.5",
+    "mocha-lcov-reporter": "^1.3.0",
+    "mocha-typescript": "^1.1.12",
+    "must": "^0.13.4",
+    "nyc": "^11.6.0",
+    "ts-node": "^5.0.1",
+    "tslint": "^5.9.1",
+    "tslint-config-shopify": "^3.0.1",
+    "typescript": "^2.7.2"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text",
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
+  }
+}
