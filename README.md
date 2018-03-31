@@ -1,7 +1,7 @@
-# prometheus-gauge-extras
+# prometheus-extended-gauge
 
-[![CircleCI](https://circleci.com/gh/hipages/prometheus-gauge-extras/tree/master.svg?style=svg)](https://circleci.com/gh/hipages/prometheus-gauge-extras/tree/master)
-[![codecov](https://codecov.io/gh/hipages/prometheus-gauge-extras/branch/master/graph/badge.svg)](https://codecov.io/gh/hipages/prometheus-gauge-extras)
+[![CircleCI](https://circleci.com/gh/hipages/prometheus-extended-gauge/tree/master.svg?style=svg)](https://circleci.com/gh/hipages/prometheus-extended-gauge/tree/master)
+[![codecov](https://codecov.io/gh/hipages/prometheus-extended-gauge/branch/master/graph/badge.svg)](https://codecov.io/gh/hipages/prometheus-extended-gauge)
 
 ## What's the problem this helps solve?
 
