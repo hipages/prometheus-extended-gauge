@@ -2,6 +2,10 @@ import { suite, test, slow, timeout, skip } from 'mocha-typescript';
 import * as must from 'must';
 import { BucketedCircularBuffer } from '../src/BucketedCircularBuffer';
 
+async function sleep(ms) {
+  return new Promise<void>((resolve) => setTimeout(resolve, ms));
+}
+
 suite('BucketedCircularBuffer', () => {
   suite('Empty Bucket', () => {
     test('An empty bucket returns 0 num values', () => {
@@ -119,6 +123,20 @@ suite('BucketedCircularBuffer', () => {
       bucket.addValue(32, 1410);
       bucket.addValue(32, 1510);
       bucket.getMinValue().must.equal(20);
+    });
+  });
+  suite('Real timestamps', () => {
+    test('Can add stuff in real time', async () => {
+      const now = new Date().valueOf();
+      const bucket = new BucketedCircularBuffer(100, 5, now);
+      await sleep(1);
+      bucket.addValue(30);
+      bucket.getMinValue().must.equal(30);
+      bucket.getMaxValue().must.equal(30);
+      await sleep(100);
+      bucket.addValue(40);
+      bucket.getMinValue().must.equal(30);
+      bucket.getMaxValue().must.equal(40);
     });
   });
 });

@@ -20,17 +20,9 @@ export class BucketedCircularBuffer implements StatsHolder {
     this.moveToTimestamp(startTimestamp === undefined ? new Date().valueOf() : startTimestamp);
   }
   private calcStepFromTimestamp(timestamp: number): number {
-    if (this.stepSizeMillis === 1024) {
-      // tslint:disable-next-line:no-bitwise
-      return timestamp >> 10;
-    }
     return Math.floor(timestamp / this.stepSizeMillis);
   }
   private calcBucketIndexFromStep(step: number): number {
-    if (this.numBuckets === 64) {
-      // tslint:disable-next-line:no-bitwise
-      return step & 63;
-    }
     return step % this.numBuckets;
   }
   private moveToTimestamp(timestamp: number) {
